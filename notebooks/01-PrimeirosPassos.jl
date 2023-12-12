@@ -59,21 +59,15 @@ using DecisionTree
 ## 3.2 Carregar o modelo
 RandomForestRegressor = MLJ.@load RandomForestRegressor pkg=DecisionTree
 
+## 4. Construir o modelo
 ## Definir a arquitetura/hiperparametros do modelo
 rf_model = MLJDecisionTreeInterface.RandomForestRegressor()
 rf_machine = machine(rf_model, 🙏[: , input_cols], 🙏[: , "fe_varinha_tl_t4"], cache=false)
-MLJ.fit!(rf_machine, verbosity=0)
-
-## 4. Construir o modelo
-
-
 
 ## 5. Treinar o modelo
-
-
+MLJ.fit!(rf_machine, verbosity=0)
 
 ## 6. Avaliar (validar) o modelo
-
 previsoes = MLJ.predict(rf_machine, 🙏[: , input_cols]) 
 
 using CairoMakie
